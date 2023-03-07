@@ -4,24 +4,25 @@ import { Component } from "react";
 export class ContactForm extends Component {
 
     static defaultProps = {
-        initialContacts: [],
-        initialFilter: '',
+        initialName: "",
+        initialNumber: "",
     };
     
     static propTypes = {
-        initialContacts: PropTypes.array,
-        initialFilter: PropTypes.string,
+        initialName: PropTypes.string,
+        initialNumber: PropTypes.string,
     };
 
     state = {
-        name: "",
-        number: "",
+        name: this.props.initialName,
+        number: this.props.initialNumber,
     };
 
     handleInputChange = e => {
-      this.setState(
-        {[e.currentTarget.name]: e.currentTarget.value}
-      );  
+        const { name, value } = e.currentTarget;
+        this.setState(
+            {[name]: value}
+        );  
     };
 
     render() {
