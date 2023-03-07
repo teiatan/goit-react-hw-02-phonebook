@@ -21,20 +21,20 @@ export class App extends Component {
     filter: '',
   };
 
-  dataFromSubmitForm = data => {
-    console.log(data);
+  takeDataFromSubmitForm = data => {
+    this.setState({contacts: [...this.state.contacts, data]});
   };
 
   render() {
     return (
       <>
         <Section title="Phonebook">
-          <ContactForm submitData={this.dataFromSubmitForm}/>
+          <ContactForm submitData={this.takeDataFromSubmitForm}/>
         </Section>
   
         <Section title="Contacts">
           <Filter />
-          <ContactList />
+          <ContactList contacts={this.state.contacts} />
         </Section>
       </>
     );
