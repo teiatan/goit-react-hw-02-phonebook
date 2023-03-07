@@ -43,7 +43,7 @@ export class App extends Component {
   
         <Section title="Contacts">
           <Filter filter={this.takeDataFromFilterInput}/>
-          <ContactList contacts={this.state.contacts} />
+          <ContactList contacts={this.state.contacts} filter={this.state.filter}/>
         </Section>
       </>
     );
