@@ -25,9 +25,14 @@ export class ContactForm extends Component {
         );  
     };
 
+    handleSubmit = e => {
+        e.preventDefault();
+        console.log(this.state);
+    };
+
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <label>
                     Name
                     <input

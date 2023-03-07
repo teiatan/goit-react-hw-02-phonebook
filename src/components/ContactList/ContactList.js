@@ -1,6 +1,6 @@
 //import PropTypes from 'prop-types';
 
-export function ContactList({}) {
+export function ContactList({props}) {
     return (
         <>
             

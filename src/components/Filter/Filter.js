@@ -1,6 +1,6 @@
 //import PropTypes from 'prop-types';
 
-export function Filter({}) {
+export function Filter({props}) {
     return (
         <>
             
