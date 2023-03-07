@@ -18,13 +18,11 @@ export class ContactForm extends Component {
         number: "",
     };
 
-    handleNameChange = e => {
-        this.setState( {name: e.currentTarget.value});
+    handleInputChange = e => {
+      this.setState(
+        {[e.currentTarget.name]: e.currentTarget.value}
+      );  
     };
-
-    handleNumberChange = e => {
-        this.setState( {number: e.currentTarget.value});
-    };    
 
     render() {
         return (
@@ -38,7 +36,7 @@ export class ContactForm extends Component {
                         title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                         required
                         value={this.state.name}
-                        onChange={this.handleNameChange}
+                        onChange={this.handleInputChange}
                     />
                 </label>
                
@@ -51,7 +49,7 @@ export class ContactForm extends Component {
                         title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                         required
                         value={this.state.number}
-                        onChange={this.handleNumberChange}
+                        onChange={this.handleInputChange}
                     />
                 </label>  
     
