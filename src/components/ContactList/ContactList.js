@@ -15,7 +15,7 @@ export function ContactList({contacts, filter}) {
                 }
     
                 )) :
-                (<p>По пошуку</p>)
+                (<p>{filter}</p>)
                 }
             
             </>

@@ -11,8 +11,12 @@ export class Filter extends Component {
         this.setState(
             {[name]: value}
         );
-        this.props.filter(this.state.filter);  
+        setTimeout(this.giveFilter);
     };
+
+    giveFilter = () => {
+        this.props.filter(this.state.filter); 
+    }
 
     render() {
         return (
@@ -21,7 +25,7 @@ export class Filter extends Component {
                 <input
                     type="text"
                     name="filter"
-                    value={this.state.value}
+                    value={this.state.filter}
                     onChange={this.handleInputChange}
                 />
             </label>
