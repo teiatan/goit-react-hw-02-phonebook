@@ -28,6 +28,14 @@ export class ContactForm extends Component {
     handleSubmit = e => {
         e.preventDefault();
         console.log(this.state);
+        this.resetForm();
+    };
+
+    resetForm = () => {
+        this.setState({
+            name: "",
+            number: "",
+        })
     };
 
     render() {

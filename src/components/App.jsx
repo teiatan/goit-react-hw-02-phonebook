@@ -21,11 +21,15 @@ export class App extends Component {
     filter: '',
   };
 
+  dataFromSubmitForm = data => {
+    console.log(data);
+  };
+
   render() {
     return (
       <>
         <Section title="Phonebook">
-          <ContactForm />
+          <ContactForm submit={this.dataFromSubmitForm}/>
         </Section>
   
         <Section title="Contacts">
