@@ -1,11 +1,14 @@
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import { ContactItem } from 'components/ContactItem/ContactItem';
 
 export function ContactList({contacts}) {
     return (
         <ul>
             {contacts.map((contact) => {
                 return (
-                    <li key={contact.name}>{contact.name}: {contact.number}</li>
+                    <ContactItem key={contact.name}
+                    name={contact.name}
+                    number={contact.number}/>
                 );
             }
 
@@ -15,5 +18,5 @@ export function ContactList({contacts}) {
 };
 
 ContactList.propTypes = {
-    
+    contacts: PropTypes.array,
 };
