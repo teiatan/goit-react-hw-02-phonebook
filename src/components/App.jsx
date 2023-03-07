@@ -30,6 +30,10 @@ export class App extends Component {
     this.setState({contacts: [...this.state.contacts, data]});
   };
 
+  takeDataFromFilterInput = data => {
+    this.setState({filter: [data]});
+  }
+
   render() {
     return (
       <>
@@ -38,7 +42,7 @@ export class App extends Component {
         </Section>
   
         <Section title="Contacts">
-          <Filter />
+          <Filter filter={this.takeDataFromFilterInput}/>
           <ContactList contacts={this.state.contacts} />
         </Section>
       </>

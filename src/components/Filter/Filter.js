@@ -10,7 +10,8 @@ export class Filter extends Component {
         const { name, value } = e.currentTarget;
         this.setState(
             {[name]: value}
-        );  
+        );
+        this.props.filter(this.state.filter);  
     };
 
     render() {
