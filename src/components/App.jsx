@@ -29,7 +29,7 @@ export class App extends Component {
     return (
       <>
         <Section title="Phonebook">
-          <ContactForm submit={this.dataFromSubmitForm}/>
+          <ContactForm submitData={this.dataFromSubmitForm}/>
         </Section>
   
         <Section title="Contacts">
