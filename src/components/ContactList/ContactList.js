@@ -7,34 +7,30 @@ export class ContactList extends Component {
         contacts: PropTypes.array,
         filter: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     };
-    rendrArray = this.props.components;
+    
+    rendrArray = this.props.contacts;
+    
     arrayForRender = () => {
-        if(this.props.filter === "") {
+        if(this.props.filter !== "") {
             this.rendrArray = this.props.filter;
         };
     };
 
     render() {
         this.arrayForRender();
-        const { filter, contacts } = this.props;
+        //console.log(this.rendrArray);
+        //const { filter, contacts } = this.props;
         return (
             <ul>
-                {filter === "" ?
-                    (contacts.map((contact) => {
+
+                {this.rendrArray.map((contact) => {
                         return (
                             <ContactItem key={contact.name}
                             name={contact.name}
                             number={contact.number}/>
                         );
-                    })) :
-                    (filter.map((contact) => {
-                        return (
-                            <ContactItem key={contact.name}
-                            name={contact.name}
-                            number={contact.number}/>
-                        );
-                    }))
-                }
+                    })}
+                
             </ul>
         );
     };
