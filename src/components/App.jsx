@@ -7,7 +7,7 @@ import { ContactList } from "./ContactList/ContactList";
 export class App extends Component {
   state = {
     contacts: this.props.innerContacts,
-    filterArray: '',
+    filterArray: [],
     renderArray: this.props.innerContacts,
   };
 
@@ -34,7 +34,7 @@ export class App extends Component {
   };
 
   chooseArrayForRender = () => {
-    if(this.state.filterArray !== "") {
+    if(this.state.filterArray.length !== 0) {
         this.setState({renderArray: this.state.filterArray})
     };
     };
@@ -48,13 +48,14 @@ export class App extends Component {
     this.setState({contacts: arrayContacts, renderArray: arrayContacts});
     
 
-    if(this.state.filterArray !== "") {
+    if(this.state.filterArray.length !== 0) {
+      console.log('worksss');
       const filterIndex = this.state.contacts.findIndex((element) =>
         element.name === name
       );
-      const arrayFiler = [...this.state.filter];
-      arrayFiler.splice(filterIndex, 1)
-      this.setState({filter: arrayFiler, renderArray: arrayFiler});
+      const arrayFilter = [...this.state.filterArray];
+      arrayFilter.splice(filterIndex, 1)
+      this.setState({filterArray: arrayFilter, renderArray: arrayFilter});
     };
 
     setTimeout(this.chooseArrayForRender);
