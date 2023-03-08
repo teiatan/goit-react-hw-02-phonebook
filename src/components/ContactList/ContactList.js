@@ -18,6 +18,10 @@ export class ContactList extends Component {
         return renderArray;
     };
 
+    onDeleteContact = name => {
+        console.log(name);
+    };
+
     render() {
 
         return (
@@ -27,7 +31,8 @@ export class ContactList extends Component {
                         return (
                             <ContactItem key={contact.name}
                             name={contact.name}
-                            number={contact.number}/>
+                            number={contact.number}
+                            onDeleteContact={this.onDeleteContact}/>
                         );
                     })}
                 
