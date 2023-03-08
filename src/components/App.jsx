@@ -28,7 +28,14 @@ export class App extends Component {
   };
 
   takeDataFromSubmitForm = data => {
-    this.setState({contacts: [...this.state.contacts, data]});
+    const index = this.state.contacts.findIndex((element) =>
+    element.name === data.name);
+    if(index === -1) {
+      this.setState({contacts: [...this.state.contacts, data]});
+    } else {
+      window.alert(`${data.name} is already in contacts`);
+    };
+    
   };
 
   takeeDataFromFilterInput = data => {
