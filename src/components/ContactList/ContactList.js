@@ -8,7 +8,9 @@ export class ContactList extends Component {
         filter: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     };
     
-    
+    state = {
+        renderArray: [],
+    }
     
     chooseArrayForRender = () => {
         let renderArray = this.props.contacts;
@@ -19,14 +21,15 @@ export class ContactList extends Component {
     };
 
     onDeleteContact = name => {
-        const index = this.chooseArrayForRender().findIndex((element) =>
+        const index = this.props.contacts.findIndex((element) =>
             element.name === name
           );
-        console.log(index);
+        this.chooseArrayForRender().splice(index, 1);
+        this.setState({renderArray: this.props.contacts})
+        
     };
 
     render() {
-
         return (
             <ul>
 
