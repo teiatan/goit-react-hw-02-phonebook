@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Section } from "./Section/section";
 import { ContactForm } from "./ContactForm/ContactForm";
 import { Filter } from "./Filter/Filter";
@@ -15,10 +16,11 @@ export class App extends Component {
     const index = this.state.contacts.findIndex((element) =>
     element.name === data.name);
     if(index === -1) {
+      Notify.success(`${data.name} is successfully added to your contact list`);
       this.setState({
         filter: "",
         contacts: [...this.state.contacts, data],
-        renderArray: [...this.state.contacts, data],
+        //renderArray: [...this.state.contacts, data],
       });
     } else {
       window.alert(`${data.name} is already in contacts`);
