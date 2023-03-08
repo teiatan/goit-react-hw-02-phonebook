@@ -15,7 +15,10 @@ export class App extends Component {
     const index = this.state.contacts.findIndex((element) =>
     element.name === data.name);
     if(index === -1) {
-      this.setState({contacts: [...this.state.contacts, data]});
+      this.setState({
+        contacts: [...this.state.contacts, data],
+        renderArray: [...this.state.contacts, data],
+      });
     } else {
       window.alert(`${data.name} is already in contacts`);
     };

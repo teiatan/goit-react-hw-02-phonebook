@@ -9,8 +9,7 @@ export class ContactForm extends Component {
     };
     
     static propTypes = {
-        initialName: PropTypes.string,
-        initialNumber: PropTypes.string,
+        submitData: PropTypes.func,
     };
 
     state = {
