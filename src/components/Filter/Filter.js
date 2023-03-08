@@ -11,10 +11,10 @@ export class Filter extends Component {
         this.setState(
             {[name]: value}
         );
-        setTimeout(this.giveFilter);
+        setTimeout(this.rewriteFilterState);
     };
 
-    giveFilter = () => {
+    rewriteFilterState = () => {
         this.props.filter(this.state.filter); 
     }
 

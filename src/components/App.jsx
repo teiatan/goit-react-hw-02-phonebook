@@ -24,17 +24,18 @@ export class App extends Component {
       {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
     ],
     filter: '',
+    filterArray: '',
   };
 
   takeDataFromSubmitForm = data => {
     this.setState({contacts: [...this.state.contacts, data]});
   };
 
-  takeDataFromFilterInput = data => {
+  takeeDataFromFilterInput = data => {
     this.setState({filter: data});
   };
 
-  takeeDataFromFilterInput = data => {
+  takeDataFromFilterInput = data => {
     this.setState({filter: data});
     this.setState(prevState => {
       return { filterArray: this.state.contacts.filter(element => element.name.toLowerCase().includes(prevState.filter)) };
@@ -50,7 +51,7 @@ export class App extends Component {
   
         <Section title="Contacts">
           <Filter filter={this.takeDataFromFilterInput}/>
-          <ContactList contacts={this.state.contacts} filter={this.state.filter}/>
+          <ContactList contacts={this.state.contacts} filter={this.state.filterArray}/>
         </Section>
       </>
     );

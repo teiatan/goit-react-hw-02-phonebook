@@ -15,7 +15,15 @@ export function ContactList({contacts, filter}) {
                 }
     
                 )) :
-                (<p>{filter}</p>)
+                (filter.map((contact) => {
+                    return (
+                        <ContactItem key={contact.name}
+                        name={contact.name}
+                        number={contact.number}/>
+                    );
+                }
+    
+                ))
                 }
             
             </>
