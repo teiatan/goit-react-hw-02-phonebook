@@ -8,6 +8,7 @@ import { ContactList } from "./ContactList/ContactList";
 export class App extends Component {
   state = {
     contacts: this.props.innerContacts,
+    //filter: "",
     filterArray: [],
     renderArray: this.props.innerContacts,
   };
@@ -16,12 +17,18 @@ export class App extends Component {
     const index = this.state.contacts.findIndex((element) =>
     element.name === data.name);
     if(index === -1) {
-      Notify.success(`${data.name} is successfully added to your contact list`);
       this.setState({
         filter: "",
         contacts: [...this.state.contacts, data],
         //renderArray: [...this.state.contacts, data],
-      });
+      })
+      if(this.state.filter === "" || this.state.filter === undefined){
+        this.setState({
+          renderArray: [...this.state.contacts, data],
+        })
+      } else {
+        Notify.success(`${data.name} is successfully added to your contact list`);
+      };
     } else {
       window.alert(`${data.name} is already in contacts`);
     };
