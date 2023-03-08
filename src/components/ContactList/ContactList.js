@@ -4,32 +4,22 @@ import { ContactItem } from 'components/ContactItem/ContactItem';
 export function ContactList({contacts, filter}) {
     return (
         <ul>
-            <>
-                {filter === "" ?
+            {filter === "" ?
                 (contacts.map((contact) => {
                     return (
                         <ContactItem key={contact.name}
                         name={contact.name}
                         number={contact.number}/>
                     );
-                }
-    
-                )) :
+                })) :
                 (filter.map((contact) => {
                     return (
                         <ContactItem key={contact.name}
                         name={contact.name}
                         number={contact.number}/>
                     );
-                }
-    
-                ))
-                }
-            
-            </>
-
-
-            
+                }))
+            }
         </ul>
     );
 };
