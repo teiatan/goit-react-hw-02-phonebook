@@ -9,23 +9,22 @@ export class ContactList extends Component {
     };
     
     state = {
-        renderArray: [],
+        renderArray: this.props.renderArray,
     }
-    
-    chooseArrayForRender = () => {
-        let renderArray = this.props.contacts;
-        if(this.props.filter !== "") {
-            renderArray = this.props.filter;
-        };
-        return renderArray;
-    };
 
     onDeleteContact = name => {
-        const index = this.props.contacts.findIndex((element) =>
+        this.props.deleteName(name);
+        /* const contactsIndex = this.props.contacts.findIndex((element) =>
             element.name === name
           );
-        this.chooseArrayForRender().splice(index, 1);
-        this.setState({renderArray: this.props.contacts})
+        const newContactsArray = this.props.contacts.splice(contactsIndex, 1);
+        console.log(newContactsArray);
+        const filterIndex = this.props.contacts.findIndex((element) =>
+            element.name === name
+          );
+        const newFilterArray = this.props.filter.splice(filterIndex, 1);
+        this.setState({renderArray: this.props.contacts}); */
+        
         
     };
 
@@ -33,7 +32,7 @@ export class ContactList extends Component {
         return (
             <ul>
 
-                {this.chooseArrayForRender().map((contact) => {
+                {this.props.renderArray.map((contact) => {
                         return (
                             <ContactItem key={contact.name}
                             name={contact.name}

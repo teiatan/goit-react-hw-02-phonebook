@@ -16,7 +16,7 @@ export class Filter extends Component {
 
     rewriteFilterState = () => {
         this.props.filter(this.state.filter); 
-    }
+    };
 
     render() {
         return (
