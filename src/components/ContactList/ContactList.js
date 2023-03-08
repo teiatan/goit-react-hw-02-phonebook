@@ -7,8 +7,15 @@ export class ContactList extends Component {
         contacts: PropTypes.array,
         filter: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     };
+    rendrArray = this.props.components;
+    arrayForRender = () => {
+        if(this.props.filter === "") {
+            this.rendrArray = this.props.filter;
+        };
+    };
 
     render() {
+        this.arrayForRender();
         const { filter, contacts } = this.props;
         return (
             <ul>
