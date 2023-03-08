@@ -16,6 +16,7 @@ export class App extends Component {
     element.name === data.name);
     if(index === -1) {
       this.setState({
+        filter: "",
         contacts: [...this.state.contacts, data],
         renderArray: [...this.state.contacts, data],
       });
@@ -28,7 +29,9 @@ export class App extends Component {
   takeDataFromFilterInput = data => {
     this.setState({filter: data});
     this.setState(prevState => {
-      return { filterArray: this.state.contacts.filter(element => element.name.toLowerCase().includes(prevState.filter)) };
+      return { filterArray: this.state.contacts.filter(element => element.name.toLowerCase().includes(prevState.filter)),
+        renderArray: this.state.contacts.filter(element => element.name.toLowerCase().includes(prevState.filter)),
+       };
     });
     setTimeout(this.chooseArrayForRender);
   };
@@ -49,7 +52,6 @@ export class App extends Component {
     
 
     if(this.state.filterArray.length !== 0) {
-      console.log('worksss');
       const filterIndex = this.state.contacts.findIndex((element) =>
         element.name === name
       );
