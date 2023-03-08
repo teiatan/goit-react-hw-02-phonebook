@@ -8,22 +8,22 @@ export class ContactList extends Component {
         filter: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     };
     
-    rendrArray = this.props.contacts;
     
-    arrayForRender = () => {
+    
+    chooseArrayForRender = () => {
+        let renderArray = this.props.contacts;
         if(this.props.filter !== "") {
-            this.rendrArray = this.props.filter;
+            renderArray = this.props.filter;
         };
+        return renderArray;
     };
 
     render() {
-        this.arrayForRender();
-        //console.log(this.rendrArray);
-        //const { filter, contacts } = this.props;
+
         return (
             <ul>
 
-                {this.rendrArray.map((contact) => {
+                {this.chooseArrayForRender().map((contact) => {
                         return (
                             <ContactItem key={contact.name}
                             name={contact.name}
