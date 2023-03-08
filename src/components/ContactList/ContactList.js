@@ -19,7 +19,10 @@ export class ContactList extends Component {
     };
 
     onDeleteContact = name => {
-        console.log(name);
+        const index = this.chooseArrayForRender().findIndex((element) =>
+            element.name === name
+          );
+        console.log(index);
     };
 
     render() {
