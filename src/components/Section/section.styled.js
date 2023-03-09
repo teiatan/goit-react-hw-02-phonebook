@@ -3,8 +3,12 @@ import styled from '@emotion/styled';
 export const SectionEl = styled.section`
     width: 600px;
     margin: 0 auto;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    margin-top: 30px;
+    border-radius: 6px;
+    box-shadow: 0px 2px 5px lightgrey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 
@@ -15,8 +19,9 @@ export const Title = styled.h2`
     text-align: center;
     margin: 0;
     background-color: white;
-    color: darkslategray;
+    color: black;
     text-transform: uppercase;
     border-radius: 6px;
+    font-weight: 900;
 `;
     
