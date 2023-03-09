@@ -1,5 +1,6 @@
 //import PropTypes from 'prop-types';
 import { Component } from "react";
+import { Label, Input } from "./Filter.styled";
 
 export class Filter extends Component {
     state = {
@@ -20,15 +21,15 @@ export class Filter extends Component {
 
     render() {
         return (
-            <label>
+            <Label>
                 Find contacts by name
-                <input
+                <Input
                     type="text"
                     name="filter"
                     value={this.state.filter}
                     onChange={this.handleInputChange}
                 />
-            </label>
+            </Label>
         );
     } 
 };

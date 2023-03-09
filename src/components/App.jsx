@@ -4,6 +4,7 @@ import { Section } from "./Section/section";
 import { ContactForm } from "./ContactForm/ContactForm";
 import { Filter } from "./Filter/Filter";
 import { ContactList } from "./ContactList/ContactList";
+import { Container } from "./App.styled";
 
 export class App extends Component {
   state = {
@@ -81,8 +82,10 @@ export class App extends Component {
         </Section>
   
         <Section title="Contacts">
-          <Filter filter={this.takeDataFromFilterInput}/>
-          <ContactList contacts={this.state.contacts} filter={this.state.filterArray} renderArray={this.state.renderArray} deleteName={this.deleteContact}/>
+          <Container>
+            <Filter filter={this.takeDataFromFilterInput}/>
+            <ContactList contacts={this.state.contacts} filter={this.state.filterArray} renderArray={this.state.renderArray} deleteName={this.deleteContact}/>
+          </Container>
         </Section>
       </>
     );
