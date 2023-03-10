@@ -11,15 +11,12 @@ export class Filter extends Component {
         const { name, value } = e.currentTarget;
         this.setState( () => {
             return  {[name]: value};
-        }
-           
-        );
-        setTimeout(this.rewriteFilterState);
+        });
+        this.setState( prevState => {
+            this.props.filter(prevState.filter);
+        });
     };
 
-    rewriteFilterState = () => {
-        this.props.filter(this.state.filter); 
-    };
 
     render() {
         return (
