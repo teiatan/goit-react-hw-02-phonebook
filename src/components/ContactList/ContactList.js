@@ -21,12 +21,5 @@ export function ContactList({renderArray, onDeleteContact}) {
 
 ContactList.propTypes = {
     renderArray: PropTypes.func,
-    /* renderArray: PropTypes.arrayOf(PropTypes.shape({ 
-        name: PropTypes.string, 
-        number: PropTypes.oneOfType([
-            PropTypes.string.isRequired,
-            PropTypes.number.isRequired,
-        ]),
-    })),  */
     onDeleteContact: PropTypes.func,
 };

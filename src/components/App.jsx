@@ -52,12 +52,6 @@ export class App extends Component {
   };
 
   chooseArrayForRender = () => {
-    if(this.state.filterArray.length !== 0) {
-        this.setState({renderArray: this.state.filterArray})
-    };
-    };
-
-  cchooseArrayForRender = () => {
     if(this.state.filter !== "") {
       const filterArray = this.state.contacts.filter(element => element.name.toLowerCase().includes(this.state.filter));
       return (filterArray)
@@ -68,24 +62,11 @@ export class App extends Component {
 
   deleteContact = (name) => {
     const contactIndex = this.state.contacts.findIndex((element) =>
-            element.name === name
-          );
+      element.name === name
+    );
     const arrayContacts = [...this.state.contacts];
     arrayContacts.splice(contactIndex, 1)
-    this.setState({contacts: arrayContacts, renderArray: arrayContacts});
-    
-
-    if(this.state.filterArray.length !== 0) {
-      const filterIndex = this.state.contacts.findIndex((element) =>
-        element.name === name
-      );
-      const arrayFilter = [...this.state.filterArray];
-      arrayFilter.splice(filterIndex, 1)
-      this.setState({filterArray: arrayFilter, renderArray: arrayFilter});
-    };
-
-    setTimeout(this.chooseArrayForRender);
-    
+    this.setState({contacts: arrayContacts});
   };
 
   render() {
@@ -101,7 +82,7 @@ export class App extends Component {
             <ContactList
               contacts={this.state.contacts} 
               filter={this.state.filterArray} 
-              renderArray={this.cchooseArrayForRender} 
+              renderArray={this.chooseArrayForRender} 
               onDeleteContact={this.deleteContact}>
             </ContactList>
           </Container>
@@ -110,3 +91,12 @@ export class App extends Component {
     );
   };
 };
+
+
+/* renderArray: PropTypes.arrayOf(PropTypes.shape({ 
+        name: PropTypes.string, 
+        number: PropTypes.oneOfType([
+            PropTypes.string.isRequired,
+            PropTypes.number.isRequired,
+        ]),
+    })),  */
