@@ -5,7 +5,6 @@ import { ContactForm } from "./ContactForm/ContactForm";
 import { Filter } from "./Filter/Filter";
 import { ContactList } from "./ContactList/ContactList";
 import { Container } from "./App.styled";
-//import { ContactItem } from "./ContactItem/ContactItem";
 
 export class App extends Component {
   state = {
@@ -16,13 +15,6 @@ export class App extends Component {
       {name: 'Annie Copeland', number: '227-91-26'},
     ],
     filter: "",
-    filterArray: [],
-    renderArray: [
-      {name: 'Rosie Simpson', number: '459-12-56'},
-      {name: 'Hermione Kline', number: '443-89-12'},
-      {name: 'Eden Clements', number: '645-17-79'},
-      {name: 'Annie Copeland', number: '227-91-26'},
-    ],
   };
 
   takeDataFromSubmitForm = data => {
@@ -38,7 +30,7 @@ export class App extends Component {
     } 
   };
 
-  handleInputChange = e => {
+  handleFilterInputChange = e => {
     this.setState({filter: e.currentTarget.value});
   };
 
@@ -64,12 +56,12 @@ export class App extends Component {
     return (
       <>
         <Section title="Phonebook">
-          <ContactForm submitData={this.takeDataFromSubmitForm}/>
+          <ContactForm handleSubmit={this.takeDataFromSubmitForm}/>
         </Section>
   
         <Section title="Contacts">
           <Container>
-            <Filter value={this.state.filter} onChange={this.handleInputChange}/>
+            <Filter value={this.state.filter} onChange={this.handleFilterInputChange}/>
             <ContactList
               contacts={this.state.contacts} 
               filter={this.state.filterArray} 
@@ -82,12 +74,3 @@ export class App extends Component {
     );
   };
 };
-
-
-/* renderArray: PropTypes.arrayOf(PropTypes.shape({ 
-        name: PropTypes.string, 
-        number: PropTypes.oneOfType([
-            PropTypes.string.isRequired,
-            PropTypes.number.isRequired,
-        ]),
-    })),  */
