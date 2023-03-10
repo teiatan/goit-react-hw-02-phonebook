@@ -63,6 +63,15 @@ export class App extends Component {
     };
     };
 
+  cchooseArrayForRender = () => {
+    if(this.state.filter !== "") {
+      const filterArray = this.state.contacts.filter(element => element.name.toLowerCase().includes(this.state.filter));
+      return (filterArray)
+    } else {
+      return (this.state.contacts)
+    }
+  };
+
   deleteContact = (name) => {
     const contactIndex = this.state.contacts.findIndex((element) =>
             element.name === name
@@ -98,7 +107,7 @@ export class App extends Component {
             <ContactList
               contacts={this.state.contacts} 
               filter={this.state.filterArray} 
-              renderArray={this.state.renderArray} 
+              renderArray={this.cchooseArrayForRender} 
               onDeleteContact={this.deleteContact}>
             </ContactList>
           </Container>

@@ -5,7 +5,7 @@ import { ContactListEl } from './ContactList.styled';
 export function ContactList({renderArray, onDeleteContact}) {
     return (
         <ContactListEl>
-            {renderArray.map((contact) => {
+            {renderArray().map((contact) => {
                     return (
                         <ContactItem 
                             key={contact.name}
@@ -20,12 +20,13 @@ export function ContactList({renderArray, onDeleteContact}) {
 };
 
 ContactList.propTypes = {
-    renderArray: PropTypes.arrayOf(PropTypes.shape({ 
+    renderArray: PropTypes.func,
+    /* renderArray: PropTypes.arrayOf(PropTypes.shape({ 
         name: PropTypes.string, 
         number: PropTypes.oneOfType([
             PropTypes.string.isRequired,
             PropTypes.number.isRequired,
         ]),
-    })), 
+    })),  */
     onDeleteContact: PropTypes.func,
 };
