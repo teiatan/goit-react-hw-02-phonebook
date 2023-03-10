@@ -26,7 +26,7 @@ export class Filter extends Component {
                     type="text"
                     name="filter"
                     value={this.props.value}
-                    onChange={this.handleInputChange}
+                    onChange={this.props.onChange}
                 />
             </Label>
         );

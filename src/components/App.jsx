@@ -47,19 +47,9 @@ export class App extends Component {
     
   };
 
-  takeDataFromFilterInput = data => {
-    this.setState({filter: data});
-  };
-
   handleInputChange = e => {
-    const { name, value } = e.currentTarget;
-    this.setState( () => {
-        return  {[name]: value};
-    });
-    this.setState( prevState => {
-        this.props.filter(prevState.filter);
-    });
-};
+    this.setState({filter: e.currentTarget.value});
+  };
 
   chooseArrayForRender = () => {
     if(this.state.filterArray.length !== 0) {
@@ -107,7 +97,7 @@ export class App extends Component {
   
         <Section title="Contacts">
           <Container>
-            <Filter filter={this.takeDataFromFilterInput} value={this.state.filter} onChange={this.handleInputChange}/>
+            <Filter value={this.state.filter} onChange={this.handleInputChange}/>
             <ContactList
               contacts={this.state.contacts} 
               filter={this.state.filterArray} 
