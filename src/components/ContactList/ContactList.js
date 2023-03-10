@@ -7,10 +7,12 @@ export function ContactList({renderArray, onDeleteContact}) {
         <ContactListEl>
             {renderArray.map((contact) => {
                     return (
-                        <ContactItem key={contact.name}
-                        name={contact.name}
-                        number={contact.number}
-                        onDeleteContact={onDeleteContact}/>
+                        <ContactItem 
+                            key={contact.name}
+                            name={contact.name}
+                            number={contact.number}
+                            onDeleteContact={onDeleteContact}
+                        />
                     );
                 })}                
         </ContactListEl>
