@@ -9,8 +9,10 @@ export class Filter extends Component {
 
     handleInputChange = e => {
         const { name, value } = e.currentTarget;
-        this.setState(
-            {[name]: value}
+        this.setState( () => {
+            return  {[name]: value};
+        }
+           
         );
         setTimeout(this.rewriteFilterState);
     };

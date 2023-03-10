@@ -49,12 +49,6 @@ export class App extends Component {
 
   takeDataFromFilterInput = data => {
     this.setState({filter: data});
-    this.setState(prevState => {
-      return { filterArray: this.state.contacts.filter(element => element.name.toLowerCase().includes(prevState.filter)),
-        renderArray: this.state.contacts.filter(element => element.name.toLowerCase().includes(prevState.filter)),
-       };
-    });
-    setTimeout(this.chooseArrayForRender);
   };
 
   chooseArrayForRender = () => {
