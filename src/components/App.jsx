@@ -8,83 +8,66 @@ import { Container } from "./App.styled";
 
 export class App extends Component {
   state = {
-    contacts: this.props.innerContacts,
-    //filter: "",
-    filterArray: [],
-    renderArray: this.props.innerContacts,
+    contacts: [
+      {name: 'Rosie Simpson', number: '459-12-56'},
+      {name: 'Hermione Kline', number: '443-89-12'},
+      {name: 'Eden Clements', number: '645-17-79'},
+      {name: 'Annie Copeland', number: '227-91-26'},
+    ],
+    filter: "",
   };
 
   takeDataFromSubmitForm = data => {
-    const index = this.state.contacts.findIndex((element) =>
-    element.name === data.name);
-    if(index === -1) {
-      this.setState({
-        filter: "",
-        contacts: [...this.state.contacts, data],
-        //renderArray: [...this.state.contacts, data],
-      })
-      if(this.state.filter === "" || this.state.filter === undefined){
-        this.setState({
-          renderArray: [...this.state.contacts, data],
-        })
-      } else {
-        Notify.success(`${data.name} is successfully added to your contact list`);
-      };
+    const existingContact = this.state.contacts.find((element) =>
+      element.name === data.name
+    );
+
+    if(existingContact === undefined) {
+      this.setState({contacts: [...this.state.contacts, data]});
+      Notify.success(`${data.name} is successfully added to your contact list`);
     } else {
       window.alert(`${data.name} is already in contacts`);
-    };
-    
+    } 
   };
 
-  takeDataFromFilterInput = data => {
-    this.setState({filter: data});
-    this.setState(prevState => {
-      return { filterArray: this.state.contacts.filter(element => element.name.toLowerCase().includes(prevState.filter)),
-        renderArray: this.state.contacts.filter(element => element.name.toLowerCase().includes(prevState.filter)),
-       };
-    });
-    setTimeout(this.chooseArrayForRender);
+  handleFilterInputChange = e => {
+    this.setState({filter: e.currentTarget.value});
   };
 
   chooseArrayForRender = () => {
-    if(this.state.filterArray.length !== 0) {
-        this.setState({renderArray: this.state.filterArray})
-    };
-    };
+    if(this.state.filter !== "") {
+      const filterArray = this.state.contacts.filter(element => element.name.toLowerCase().includes(this.state.filter));
+      return (filterArray)
+    } else {
+      return (this.state.contacts)
+    }
+  };
 
   deleteContact = (name) => {
     const contactIndex = this.state.contacts.findIndex((element) =>
-            element.name === name
-          );
+      element.name === name
+    );
     const arrayContacts = [...this.state.contacts];
     arrayContacts.splice(contactIndex, 1)
-    this.setState({contacts: arrayContacts, renderArray: arrayContacts});
-    
-
-    if(this.state.filterArray.length !== 0) {
-      const filterIndex = this.state.contacts.findIndex((element) =>
-        element.name === name
-      );
-      const arrayFilter = [...this.state.filterArray];
-      arrayFilter.splice(filterIndex, 1)
-      this.setState({filterArray: arrayFilter, renderArray: arrayFilter});
-    };
-
-    setTimeout(this.chooseArrayForRender);
-    
+    this.setState({contacts: arrayContacts});
   };
 
   render() {
     return (
       <>
         <Section title="Phonebook">
-          <ContactForm submitData={this.takeDataFromSubmitForm}/>
+          <ContactForm handleSubmit={this.takeDataFromSubmitForm}/>
         </Section>
   
         <Section title="Contacts">
           <Container>
-            <Filter filter={this.takeDataFromFilterInput}/>
-            <ContactList contacts={this.state.contacts} filter={this.state.filterArray} renderArray={this.state.renderArray} deleteName={this.deleteContact}/>
+            <Filter value={this.state.filter} onChange={this.handleFilterInputChange}/>
+            <ContactList
+              contacts={this.state.contacts} 
+              filter={this.state.filterArray} 
+              renderArray={this.chooseArrayForRender} 
+              onDeleteContact={this.deleteContact}>
+            </ContactList>
           </Container>
         </Section>
       </>

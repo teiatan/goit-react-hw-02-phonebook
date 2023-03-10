@@ -1,39 +1,21 @@
-//import PropTypes from 'prop-types';
-import { Component } from "react";
+import PropTypes from 'prop-types';
 import { Label, Input } from "./Filter.styled";
 
-export class Filter extends Component {
-    state = {
-        filter: "",
-    };
-
-    handleInputChange = e => {
-        const { name, value } = e.currentTarget;
-        this.setState(
-            {[name]: value}
-        );
-        setTimeout(this.rewriteFilterState);
-    };
-
-    rewriteFilterState = () => {
-        this.props.filter(this.state.filter); 
-    };
-
-    render() {
-        return (
-            <Label>
-                Find contacts by name
-                <Input
-                    type="text"
-                    name="filter"
-                    value={this.state.filter}
-                    onChange={this.handleInputChange}
-                />
-            </Label>
-        );
-    } 
+export function Filter ({value, onChange}) {
+    return (
+        <Label>
+            Find contacts by name
+            <Input
+                type="text"
+                name="filter"
+                value={value}
+                onChange={onChange}
+            />
+        </Label>
+    );
 };
 
 Filter.propTypes = {
-    
+    value: PropTypes.string, 
+    onChange: PropTypes.func,
 };

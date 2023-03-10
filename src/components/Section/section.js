@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { SectionEl, Title } from './section.styled';
 
-export function Section({name, title, children}) {
+export function Section({title, children}) {
     return (
         <SectionEl>
             {title && (<Title>{title}</Title>)}
@@ -11,7 +11,6 @@ export function Section({name, title, children}) {
 };
 
 Section.propTypes = {
-    name: PropTypes.string, 
     title: PropTypes.string, 
     children: PropTypes.node,
 };

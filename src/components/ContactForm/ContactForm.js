@@ -3,19 +3,13 @@ import { Component } from "react";
 import { Form, Label, Input, Button } from './ContactForm.styled';
 
 export class ContactForm extends Component {
-
-    static defaultProps = {
-        initialName: "",
-        initialNumber: "",
-    };
-    
-    static propTypes = {
-        submitData: PropTypes.func,
-    };
-
     state = {
-        name: this.props.initialName,
-        number: this.props.initialNumber,
+        name: "",
+        number: "",
+    };
+
+    static propTypes = {
+        handleSubmit: PropTypes.func,
     };
 
     handleInputChange = e => {
@@ -27,7 +21,7 @@ export class ContactForm extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        this.props.submitData(this.state);
+        this.props.handleSubmit(this.state);
         this.resetForm();
     };
 
