@@ -22,37 +22,30 @@ export class App extends Component {
       element.name === data.name
     );
 
-    if(existingContact === undefined) {
-      this.setState({contacts: [...this.state.contacts, data]});
-      Notify.success(`${data.name} is successfully added to your contact list`);
-    } else {
+    if(!existingContact) {
       window.alert(`${data.name} is already in contacts`);
+      return
     } 
+    
+     this.setState(prev => ({contacts: [...prev.contacts, data]}));
+      Notify.success(`${data.name} is successfully added to your contact list`);
   };
 
   handleFilterInputChange = e => {
     this.setState({filter: e.currentTarget.value});
   };
 
-  chooseArrayForRender = () => {
-    if(this.state.filter !== "") {
-      const filterArray = this.state.contacts.filter(element => element.name.toLowerCase().includes(this.state.filter));
-      return (filterArray)
-    } else {
-      return (this.state.contacts)
-    }
+  getFilteredContacts = () => {
+    return this.state.contacts.filter(element => element.name.toLowerCase().includes(this.state.filter));
   };
 
   deleteContact = (name) => {
-    const contactIndex = this.state.contacts.findIndex((element) =>
-      element.name === name
-    );
-    const arrayContacts = [...this.state.contacts];
-    arrayContacts.splice(contactIndex, 1)
-    this.setState({contacts: arrayContacts});
+   
+    this.setState(prev => ({contacts: prev.contacts.filter(contact => contact.name !== name)}));
   };
 
   render() {
+    const visibleContacts = this.getFilteredContacts()
     return (
       <>
         <Section title="Phonebook">
@@ -63,9 +56,9 @@ export class App extends Component {
           <Container>
             <Filter value={this.state.filter} onChange={this.handleFilterInputChange}/>
             <ContactList
-              contacts={this.state.contacts} 
-              filter={this.state.filterArray} 
-              renderArray={this.chooseArrayForRender} 
+              contacts={visibleContacts} 
+           
+   
               onDeleteContact={this.deleteContact}>
             </ContactList>
           </Container>
