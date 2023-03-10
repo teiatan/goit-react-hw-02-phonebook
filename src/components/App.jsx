@@ -26,25 +26,16 @@ export class App extends Component {
   };
 
   takeDataFromSubmitForm = data => {
-    const index = this.state.contacts.findIndex((element) =>
-    element.name === data.name);
-    if(index === -1) {
-      this.setState({
-        filter: "",
-        contacts: [...this.state.contacts, data],
-        //renderArray: [...this.state.contacts, data],
-      })
-      if(this.state.filter === "" || this.state.filter === undefined){
-        this.setState({
-          renderArray: [...this.state.contacts, data],
-        })
-      } else {
-        Notify.success(`${data.name} is successfully added to your contact list`);
-      };
+    const existingContact = this.state.contacts.find((element) =>
+      element.name === data.name
+    );
+
+    if(existingContact === undefined) {
+      this.setState({contacts: [...this.state.contacts, data]});
+      Notify.success(`${data.name} is successfully added to your contact list`);
     } else {
       window.alert(`${data.name} is already in contacts`);
-    };
-    
+    } 
   };
 
   handleInputChange = e => {
