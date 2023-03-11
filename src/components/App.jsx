@@ -37,7 +37,11 @@ export class App extends Component {
     return this.state.contacts.filter(element => element.name.toLowerCase().includes(this.state.filter));
   };
 
-  deleteContact = (name) => {
+  deleteContact = (target) => {
+    if(target.nodeName !== 'BUTTON') {
+      return;
+    }
+    const name = target.name;
     this.setState(prevState => ({contacts: prevState.contacts.filter(contact => contact.name !== name)}));
     Notify.failure(`${name} is deleted from your contact list`);
   };
