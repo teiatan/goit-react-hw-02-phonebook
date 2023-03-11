@@ -39,6 +39,7 @@ export class App extends Component {
 
   deleteContact = (name) => {
     this.setState(prevState => ({contacts: prevState.contacts.filter(contact => contact.name !== name)}));
+    Notify.failure(`${name} is deleted from your contact list`);
   };
 
   render() {
